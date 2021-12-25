@@ -1,11 +1,13 @@
-import './App.css';
+import { MainLayout } from 'layouts';
+import { useRoutes } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello world!</h1>
-    </div>
-  );
+  const element = useRoutes([
+    { path: '/', element: <div>home</div> },
+    { path: 'dashboard', element: <div>dashboard</div> },
+    { path: '*', element: <div>notfound</div> },
+  ]);
+  return <MainLayout>{element}</MainLayout>;
 }
 
 export default App;

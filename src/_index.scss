@@ -1,0 +1,39 @@
+@import '_variables';
+
+:root {
+  font-size: 16px;
+  --primary: #{$primary-dark};
+  --secondary: #{$secondary-dark};
+  --text-primary: #{$text-primary-dark};
+  --bg-primary: #{$bg-primary-dark};
+  --bg-secondary: #{$bg-secondary-dark};
+  --border-primary: #{$border-primary};
+}
+
+:root[theme='light'] {
+  --primary: #{$primary-light};
+  --secondary: #{$secondary-light};
+  --text-primary: #{$text-primary-light};
+  --bg-primary: #{$bg-primary-light};
+  --bg-secondary: #{$bg-secondary-light};
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  color: var(--primary);
+}
