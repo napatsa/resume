@@ -25,7 +25,8 @@ const Sidebar = ({ menuList }: MenuListType) => {
           )}
         >
           <Link to={menu?.href} data-type="menu" data-href={menu?.href}>
-            {menu?.label}
+            <div className={styles.icon}>{menu.label.slice(0, 1)}</div>
+            <span>{menu?.label}</span>
           </Link>
         </div>
       )),
@@ -34,6 +35,8 @@ const Sidebar = ({ menuList }: MenuListType) => {
 
   const onClickMenu = (e: any) => {
     const el = e.target.parentNode.getBoundingClientRect();
+
+    console.log(e.target.parentNode);
 
     const selector = document.querySelector(
       'div[data-type="selector-bg"]'
@@ -68,9 +71,11 @@ const Sidebar = ({ menuList }: MenuListType) => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles['selector-bg']} data-type="selector-bg"></div>
-      {renderMenu}
+    <div className={styles['wrapper-container']}>
+      <div className={styles.container}>
+        <div className={styles['selector-bg']} data-type="selector-bg"></div>
+        {renderMenu}
+      </div>
     </div>
   );
 };

@@ -6,9 +6,10 @@ const MainLayout: React.FC = ({ children }) => {
     <div>
       <Sidebar
         menuList={[
-          { label: 'MENU1', href: 'menu1' },
-          { label: 'MENU2', href: 'menu2' },
-          { label: 'MENU3 MENU3 MENU3 MENU3 MENU3', href: 'menu3' },
+          { label: 'ABOUT', href: 'about' },
+          { label: 'SKILL', href: 'skill' },
+          { label: 'WORK', href: 'work' },
+          { label: 'CONTACT', href: 'contact' },
         ]}
       />
       <div className={styles.container}>{children}</div>
