@@ -1,0 +1,38 @@
+@import '_variables.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 9998;
+  pointer-events: none;
+
+  > div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 100%;
+    width: 0px;
+    height: 0px;
+    box-shadow: 0px 0px 0px 100vw #e3dfd2;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0.5s;
+  }
+
+  &.active > div {
+    width: 130vw;
+    height: 130vw;
+    transition: 1.5s;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .container.active > div {
+    width: 130vh;
+    height: 130vh;
+    transition: 1.5s;
+  }
+}

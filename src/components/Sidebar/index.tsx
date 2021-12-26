@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 
+import DelayLink from 'components/DelayLink';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
+import { useRouteContext } from 'context/RouteContext';
 
 export type MenuOfSidebarType = {
   label: string;
@@ -13,6 +15,7 @@ export type MenuListType = { menuList: Array<MenuOfSidebarType> };
 
 const Sidebar: React.FC<MenuListType> = ({ menuList }) => {
   const location = useLocation();
+  const { loading, setLoading } = useRouteContext();
 
   const renderMenu = useMemo(
     () =>
@@ -24,10 +27,16 @@ const Sidebar: React.FC<MenuListType> = ({ menuList }) => {
             location.pathname.slice(1) === menu?.href && styles.active
           )}
         >
-          <Link to={menu?.href} data-type="menu" data-href={menu?.href}>
+          <DelayLink
+            to={menu?.href}
+            data-type="menu"
+            data-href={menu?.href}
+            onDelayStart={() => setLoading(true)}
+            delay={500}
+          >
             <div className={styles.icon}>{menu.label.slice(0, 1)}</div>
             <span>{menu?.label}</span>
-          </Link>
+          </DelayLink>
         </div>
       )),
     [menuList]
@@ -35,8 +44,6 @@ const Sidebar: React.FC<MenuListType> = ({ menuList }) => {
 
   const onClickMenu = (e: any) => {
     const el = e.target.parentNode.getBoundingClientRect();
-
-    console.log(e.target.parentNode);
 
     const selector = document.querySelector(
       'div[data-type="selector-bg"]'
