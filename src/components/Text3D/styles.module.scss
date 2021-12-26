@@ -1,0 +1,32 @@
+.container {
+  // animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  transform-style: preserve-3d;
+
+  p {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    position: absolute;
+    width: 100%;
+    letter-spacing: 0.2em;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+@for $i from 1 through 12 {
+  p:nth-child(#{$i}) {
+    transform: translateZ(-$i + px);
+    color: var(--text-primary);
+  }
+}

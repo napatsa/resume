@@ -11,7 +11,7 @@ export type MenuOfSidebarType = {
 
 export type MenuListType = { menuList: Array<MenuOfSidebarType> };
 
-const Sidebar = ({ menuList }: MenuListType) => {
+const Sidebar: React.FC<MenuListType> = ({ menuList }) => {
   const location = useLocation();
 
   const renderMenu = useMemo(
