@@ -4,20 +4,21 @@ import { extend, useFrame, useLoader } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import React from 'react';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 import fontPassion from 'assets/fonts/PassionOneBold.blob';
 import scssVariables from '_export.scss';
 
 extend({ TextGeometry });
 
-export default function Text({
+const Text = ({
   children,
   vAlign = 'center',
   hAlign = 'center',
   size = 1.5,
   color = '#000000',
   ...props
-}: any) {
+}: any) => {
   const [hover, setHover] = useState(false);
   const font = useLoader(FontLoader, fontPassion);
   const config = useMemo(
@@ -65,4 +66,6 @@ export default function Text({
       </mesh>
     </group>
   );
-}
+};
+
+export default React.memo(Text);
