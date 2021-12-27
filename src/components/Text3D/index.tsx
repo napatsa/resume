@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 
+import { animated, useSpring } from '@react-spring/three';
 import { extend, useFrame, useLoader } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -37,9 +38,9 @@ const Text = ({
   );
   const mesh = useRef();
 
-  useFrame((state, delta) => {
-    return hover && ((mesh.current as any).rotation.y += 0.05);
-  });
+  // useFrame((state, delta) => {
+  //   return hover && ((mesh.current as any).rotation.y += 0.05);
+  // });
 
   useEffect(() => {
     const size = new THREE.Vector3();
@@ -54,7 +55,7 @@ const Text = ({
 
   return (
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
-      <mesh
+      <animated.mesh
         ref={mesh}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
@@ -63,7 +64,7 @@ const Text = ({
         <meshStandardMaterial
           color={hover ? scssVariables.secondary : scssVariables.primary}
         />
-      </mesh>
+      </animated.mesh>
     </group>
   );
 };
