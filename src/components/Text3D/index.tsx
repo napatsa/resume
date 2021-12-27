@@ -44,7 +44,7 @@ const Text = ({
   }, 300);
 
   const { rotate } = useSpring({
-    rotate: hover ? [0, THREE.MathUtils.degToRad(-45), 0] : [0, 0, 0],
+    rotate: hover ? [THREE.MathUtils.degToRad(180), 0, 0] : [0, 0, 0],
     config: { clamp: true },
   });
 

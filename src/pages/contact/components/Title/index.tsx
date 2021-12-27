@@ -10,16 +10,16 @@ const Title: React.FC<any> = ({ pos = [0, 0, 0] }) => {
         <Box marginLeft={45}>
           <Text3D>C</Text3D>
         </Box>
-        <Box marginLeft={6}>
+        <Box marginLeft={7}>
           <Text3D>O</Text3D>
         </Box>
-        <Box marginLeft={0}>
+        <Box marginLeft={1}>
           <Text3D>N</Text3D>
         </Box>
-        <Box marginLeft={0}>
+        <Box marginLeft={1}>
           <Text3D>T</Text3D>
         </Box>
-        <Box marginLeft={0}>
+        <Box marginLeft={4}>
           <Text3D>A</Text3D>
         </Box>
         <Box marginLeft={-4}>
