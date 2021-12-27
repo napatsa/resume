@@ -7,7 +7,7 @@ const Title: React.FC<any> = ({ pos = [0, 0, 0] }) => {
   return (
     <animated.group position={pos}>
       <Flex flexDirection="row" justifyContent="center" alignItems="center">
-        <Box marginLeft={50}>
+        <Box marginLeft={45}>
           <Text3D>A</Text3D>
         </Box>
         <Box marginLeft={1}>

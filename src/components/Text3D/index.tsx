@@ -9,6 +9,7 @@ import React from 'react';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 import fontPassion from 'assets/fonts/PassionOneBold.blob';
 import scssVariables from '_export.scss';
+import { useDebouncedCallback } from 'use-debounce';
 
 extend({ TextGeometry });
 
@@ -17,7 +18,7 @@ const Text = ({
   vAlign = 'center',
   hAlign = 'center',
   size = 1.5,
-  color = '#000000',
+  color = scssVariables.primary,
   ...props
 }: any) => {
   const [hover, setHover] = useState(false);
@@ -38,9 +39,14 @@ const Text = ({
   );
   const mesh = useRef();
 
-  // useFrame((state, delta) => {
-  //   return hover && ((mesh.current as any).rotation.y += 0.05);
-  // });
+  const debouncedHover = useDebouncedCallback((value) => {
+    setHover(value);
+  }, 300);
+
+  const { rotate } = useSpring({
+    rotate: hover ? [0, THREE.MathUtils.degToRad(-45), 0] : [0, 0, 0],
+    config: { clamp: true },
+  });
 
   useEffect(() => {
     const size = new THREE.Vector3();
@@ -57,13 +63,17 @@ const Text = ({
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
       <animated.mesh
         ref={mesh}
-        onPointerOver={() => setHover(true)}
-        onPointerOut={() => setHover(false)}
+        rotation={rotate as any}
+        onPointerOver={() => {
+          setHover(true);
+          debouncedHover.cancel();
+        }}
+        onPointerOut={() => {
+          debouncedHover(false);
+        }}
       >
         <textGeometry args={[children, config]} />
-        <meshStandardMaterial
-          color={hover ? scssVariables.secondary : scssVariables.primary}
-        />
+        <meshStandardMaterial color={color} />
       </animated.mesh>
     </group>
   );
